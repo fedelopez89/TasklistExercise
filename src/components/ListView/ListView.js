@@ -25,15 +25,18 @@ const defaultData = [
   { id: "110", title: "Gaston Nicolas LaGata Fernandez" },
 ];
 
-const ListView = () => {
+const ListView = (props) => {
   const [listTask, setListTask] = useState(defaultData);
   const [listTask2, setListTask2] = useState({});
 
   useEffect(() => {
-    getTasks(3).then((tasks) => {
+    /* FGL */
+    setListTask(defaultData.slice(0,props.numberTasks));
+    /* FGL */
+    getTasks(props.numberTasks).then((tasks) => {
       setListTask2(tasks);
     });
-  }, []);
+  }, [props.numberTasks]);
 
   let content = <p>No tasks found.</p>;
 
