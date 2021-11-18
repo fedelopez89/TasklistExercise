@@ -5,12 +5,12 @@ import * as S from "./styles";
 
 /* Modal.setAppElement('App'); */
 
-const TaskView = (props) => {
+const TaskView = ({tasks}) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState({});
 
   const openModal = (task) => {
-    setSelectedTask({ id: task.id, title: task.title });
+    setSelectedTask({ id: task.id, task: task.task });
     setIsOpen(true);
   };
 
@@ -26,11 +26,11 @@ const TaskView = (props) => {
   return (
     <>
       <S.TaskList>
-        {props.tasks.map((task) => (
+        {tasks.map((task) => (
           <li key={task.id} id={task.id} onClick={() => openModal(task)}>
             <S.TaskView>
               <S.nameTask>Task #{task.id}</S.nameTask>
-              <S.nameTask>{task.title}</S.nameTask>
+              <S.nameTask>{task.task}</S.nameTask>
             </S.TaskView>
           </li>
         ))}

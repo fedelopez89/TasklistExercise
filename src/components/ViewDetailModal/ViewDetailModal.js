@@ -1,5 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
+import { postCompleteTask } from "../../helpers/postCompleteTask";
+
 // Styles
 import "./styles.css";
 
@@ -13,27 +15,28 @@ const ViewDetailModal = ({
   };
 
   const onComplete = (idTask) => {
-    // Call to the API
+    postCompleteTask(idTask);
     console.log(selectedTask.id);
   };
 
   return (
     <Modal
-      isOpen={isOpen}
+      ariaHideApp={false}
       className="modal-container"
+      isOpen={isOpen}
       onRequestClose={closeModal}
     >
       <p>
-        Task #{selectedTask.id} - {selectedTask.title}
+        Task #{selectedTask.id} - {selectedTask.task}
       </p>
-      <div style={{ textAlign: "right" }}>
+      <div style={{ textAlign: "right"}}>
         <button
           style={{ fontSize: 10 }}
           onClick={() => onComplete(selectedTask.id)}
         >
           Complete
         </button>
-        <button style={{ fontSize: 10, marginLeft: 3 }} onClick={closeModal}>
+        <button style={{ fontSize: 10, marginLeft: 3}} onClick={closeModal}>
           Close
         </button>
       </div>

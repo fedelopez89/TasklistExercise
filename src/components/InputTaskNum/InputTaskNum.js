@@ -6,7 +6,7 @@ const InputTaskNum = (props) => {
   const [isValid, setisValid] = useState(true);
 
   const numTaskInputChangeHandler = (event) => {
-    if (event.target.value.trim().length > 0) {
+    if (event.target.value > -1) {
       setisValid(true);
     }
     setEnteredValue(event.target.value);
@@ -32,7 +32,6 @@ const InputTaskNum = (props) => {
           <input
             type="number"
             min="0"
-            placeholder="0"
             value={enteredValue}
             onChange={numTaskInputChangeHandler}
           />
